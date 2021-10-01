@@ -1,4 +1,4 @@
-import { CircularProgress, Grid } from '@mui/material';
+import { CircularProgress, Container, Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
@@ -18,19 +18,20 @@ const CategoryDetails = () => {
 
     return (
         <Box sx={{ mt: 6 }}>
-            {
-                meals.length === 0 ?
-                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <CircularProgress />
-                    </Box>
-                    :
-                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                        {
-                            meals.map(meal => <MealCard key={meal.idMeal} meal={meal}></MealCard>)
-                        }
-                    </Grid>
-            }
-
+            <Container>
+                {
+                    meals.length === 0 ?
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <CircularProgress />
+                        </Box>
+                        :
+                        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                            {
+                                meals.map(meal => <MealCard key={meal.idMeal} meal={meal}></MealCard>)
+                            }
+                        </Grid>
+                }
+            </Container>
 
         </Box>
     );

@@ -11,6 +11,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import { NavLink, useHistory } from "react-router-dom";
 
 import './Header.css';
+import { Menu, MenuItem } from '@mui/material';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -55,6 +57,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 const Header = () => {
 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     const [searchValue, setSearchValue] = useState('');
 
     const searchItem = (event) => {
@@ -98,11 +109,19 @@ const Header = () => {
                                     Home
                                 </NavLink>
                                 <NavLink
-                                    to="/Menu"
-                                    className="nav-link"
-                                    activeClassName="nav-link-active"
+                                    to="#"
+                                    id="basic-button"
+                                    aria-controls="basic-menu"
+                                    aria-haspopup="true"
+                                    aria-expanded={open ? 'true' : undefined}
+                                    onClick={handleClick}
+                                    className="nav-link menu"
                                 >
                                     Menu
+                                    <ArrowDropDownIcon
+                                        fontSize="large"
+                                        sx={{ position: "absolute", left: 20, top: 20 }}
+                                    />
                                 </NavLink>
                                 <NavLink
                                     to="/blog"
@@ -125,8 +144,20 @@ const Header = () => {
                                 >
                                     Contact
                                 </NavLink>
-
                             </Typography>
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                            </Menu>
                         </Box>
                         <Box sx={{ pb: 2 }}>
                             <Search>
