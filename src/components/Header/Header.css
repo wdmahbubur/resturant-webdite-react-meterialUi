@@ -1,0 +1,16 @@
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 4px 12px;
+    height: 100%;
+    display: inline-block;
+}
+.nav-link:hover {
+    color: rgb(194, 194, 194);
+}
+.nav-link-active {
+    background-color: #fff;
+    color: #1976d2;
+    border-radius: 4px 4px 0 0;
+}
