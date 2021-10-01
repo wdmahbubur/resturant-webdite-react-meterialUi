@@ -15,7 +15,7 @@ const MealDetails = () => {
         fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`)
             .then(res => res.json())
             .then(data => setMealDetail(data.meals[0]));
-    }, [])
+    }, [idMeal])
 
     const { strMeal, strCategory, strArea, strInstructions, strMealThumb, strYoutube } = mealDetail;
 

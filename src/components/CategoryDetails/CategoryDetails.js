@@ -13,7 +13,7 @@ const CategoryDetails = () => {
         fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${strCategory}`)
             .then(res => res.json())
             .then(data => setMeals(data.meals))
-    }, [])
+    }, [strCategory])
 
 
     return (
